@@ -1,9 +1,8 @@
 #include "kernel.h"
-#include "print.h"
+#include "std/printer.h"
+#include "driver/rtc.h"
 
 void welcome(char* vidptr) {
-  char *emptyLine = "                                                                                ";
-
   unsigned int i = 0;
 
   while(i < COLS * LINES * 2) {
@@ -16,6 +15,11 @@ void welcome(char* vidptr) {
   i = printline(i, vidptr, copyright, 0x03);
   i = printline(i, vidptr, emptyLine, 0x01);
   i = printline(i, vidptr, booting, 0x4f);
+
+  i = printline(i, vidptr, emptyLine, 0x01);
+
+  i = printline(i, vidptr, ltoa_bt(unixtime()), 0x4f);
+  i = printline(i, vidptr, pressEnter, 0x05);
 }
 
 void kmain(void) {

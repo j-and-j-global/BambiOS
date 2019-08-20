@@ -1,1 +1,7 @@
 kernel
+build/
+dist/
+test/
+*.c.*
+core.*
+core
