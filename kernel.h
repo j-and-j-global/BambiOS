@@ -2,7 +2,7 @@
 char *welcomeMessage = "Welcome to BambiOS";
 char *copyright = "(c) The BambiOS team, 2019";
 char *booting = "booting...";
-char *emptyLine = "                                                                                ";
+char *emptyLine = " ";
 char *pressEnter = "press enter to start";
 
 #ifndef SLEEP_S

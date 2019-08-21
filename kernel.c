@@ -1,6 +1,7 @@
 #include "kernel.h"
-#include "std/printer.h"
 #include "driver/rtc.h"
+#include "hardware/cmos.h"
+#include "std/printer.h"
 
 void welcome(char* vidptr) {
   unsigned int i = 0;
@@ -23,6 +24,8 @@ void welcome(char* vidptr) {
 }
 
 void kmain(void) {
+  while (!cmos_ready());
+
   char *vidptr = (char*)0xb8000;  //video mem begins here.
 
   welcome(vidptr);
