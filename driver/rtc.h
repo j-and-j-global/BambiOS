@@ -30,7 +30,7 @@ struct t_time {
 /**
     Read the RTC and return the time it shows
 **/
-struct t_time *rtc();
+struct t_time rtc();
 
 /**
    Convenience function, returning whether a given year is a leapyear or not
@@ -54,6 +54,8 @@ char unbcd(char);
 static const unsigned char months[] = {
   31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
 };
+
+static const int leapseconds = 27;
 
 /**
    The following are convenience definitions for time maths operations
