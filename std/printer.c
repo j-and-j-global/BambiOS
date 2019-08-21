@@ -45,12 +45,7 @@ char *ltoa_bt(unsigned long value) {
   char *ptr;
   char *low;
 
-  rc = ptr;
-
-  if (value < 0) {
-      *ptr++ = '-';
-  }
-
+  rc = ptr = "";
   low = ptr;
 
   do {
