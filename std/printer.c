@@ -6,13 +6,13 @@ int spacecount(int i) {
      in this mode; one for the content and one
      for the display option
   */
-  int maxWidth = COLS * 2;
+  int chars = i/2;
 
-  if (i < maxWidth) {
-    return maxWidth - i;
+  if (chars < COLS) {
+    return COLS - chars;
   }
 
-  return i % maxWidth;
+  return COLS - (chars % COLS);
 }
 
 int printline(int startpos, char* dest,  char* msg, char display) {
@@ -24,13 +24,15 @@ int printline(int startpos, char* dest,  char* msg, char display) {
     dest[vidLocation+1] = display;
 
     ++idx;
-    vidLocation = vidLocation + 2;
+    vidLocation += 2;
   }
 
-  unsigned int chars = vidLocation + spacecount(vidLocation);
-  for (; vidLocation < chars; vidLocation+=2) {
+  int spaces = spacecount(vidLocation);
+  for (int i = 0; i < spaces; i++) {
     dest[vidLocation] = ' ';
     dest[vidLocation+1] = 0x05;
+
+    vidLocation += 2;
   }
 
   return vidLocation;
