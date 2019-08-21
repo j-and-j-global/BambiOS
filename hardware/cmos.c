@@ -30,10 +30,10 @@ void outb_p (unsigned char __value, unsigned short int __port) {
 unsigned char read_from_cmos(char index) {
   unsigned char output;
 
-  char address = CMOS_ADDRESS;
-  char data = CMOS_DATA;
+  unsigned short int address = CMOS_ADDRESS;
+  unsigned short int data = CMOS_DATA;
 
-  outb_p(address, index);
+  outb_p(index, address);
 
   output = inb_p(data);
 
