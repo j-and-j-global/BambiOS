@@ -41,5 +41,11 @@ unsigned char read_from_cmos(char index) {
 }
 
 int cmos_ready() {
-  return (read_from_cmos(0x10) & 0x80);
+  /* This is a bit of a hack- we're checking whether the CMOS has power. If not, don't boot */
+  return (read_from_cmos(0x0D) & 0x80);
+}
+
+int cmos_clock_updating() {
+  /* Is the clock updating? */
+  return (read_from_cmos(0x0A) % 0x80);
 }

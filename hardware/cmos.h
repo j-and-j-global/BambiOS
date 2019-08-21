@@ -1,4 +1,28 @@
+/**
+   cmos.h, James Condron 2019
+
+   Handle i/o for CMOS- including RTC
+ **/
+
+/**
+   read_from_cmos returns the value the cmos holds for a given cmos address.
+
+   It is the caller's responsibility to ensure the cmos is ready, using cmos_ready
+ **/
 unsigned char read_from_cmos(char);
+
+/**
+   cmos_ready returns !0 for whether the cmos is ready, and 0 for when it isn't
+ **/
+int cmos_ready();
+
+/**
+   cmos_clock_updating returns 1 if the cmos clock is in the middle of updating
+
+   If it is, then the time we're about to read is not likely to be correct, especially
+   if all of the time registers have not updated (which this tells us is not the case)
+ **/
+int cmos_clock_updating();
 
 #ifndef CMOS_ADDRESS
 #define CMOS_ADDRESS 0x70
