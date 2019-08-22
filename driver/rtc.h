@@ -5,31 +5,9 @@
  **/
 
 /**
-   t_time (tea time) represents the necessary information for representing
-   the time from the RTC.
-
-   (Ackshually, it'll do for any clock, and should we write a network clock this
-   struct will be a decent jumping point for that)
-**/
-struct t_time {
-  char seconds;          /* Seconds past the minute on the clock */
-  char minutes;          /* Minutes on the hour */
-  char hours;            /* Hours on the day */
-  char day_of_week;      /* Day of the week, don't expect this to be any good (according to the docs) */
-  char day_of_month;     /* Day of the month */
-  char month;            /* Month of year, 0=January, 11=December */
-  char year;             /* Two digit year- we always assume the century is the 21st */
-  char century;          /* Century, should the CMOS know it. As above, defaults to 20 */
-
-  /* The following are informational, largely used when filling the above */
-  char twentyfour;       /* Whether the RTC is in 24 hour format, or not (the hours field above IS ALWAYS in 24 hour format) */
-  char dst;              /* Whether the RTC thinks we're in daylight savings */
-  char bin;              /* Whether the RTC returned data in binary (or BCD) */
-};
-
-/**
     Read the RTC and return the time it shows
 **/
+
 struct t_time rtc();
 
 /**

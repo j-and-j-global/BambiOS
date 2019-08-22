@@ -42,27 +42,29 @@ int printline(int startpos, char* dest,  char* msg, char display) {
    This is pretty much our itoa, but with a long and without
    the base stuff- we're always base10
 **/
-char *ltoa_bt(unsigned long value) {
+char *ltoa_bt(unsigned long value, char *buffer) {
   char *rc;
   char *ptr;
   char *low;
 
-  rc = ptr = "";
+  rc = ptr = buffer;
   low = ptr;
 
   do {
-      *ptr++ = "zyxwvutsrqponmlkjihgfedcba9876543210123456789abcdefghijklmnopqrstuvwxyz"[35 + value % 10];
+    int x = value % 10;
+    int y = 35 + x;
+    *ptr++ = "zyxwvutsrqponmlkjihgfedcba9876543210123456789abcdefghijklmnopqrstuvwxyz"[y];
 
-      value /= 10;
-    } while ( value );
+    value /= 10;
+  } while ( value );
 
   *ptr-- = '\0';
 
   while ( low < ptr ) {
-      char tmp = *low;
-      *low++ = *ptr;
-      *ptr-- = tmp;
-    }
+    char tmp = *low;
+    *low++ = *ptr;
+    *ptr-- = tmp;
+  }
 
   return rc;
 }

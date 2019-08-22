@@ -1,4 +1,5 @@
 #include "../hardware/cmos.h"
+#include "../std/time.h"
 #include "rtc.h"
 
 struct t_time rtc() {
@@ -14,7 +15,9 @@ struct t_time rtc() {
   time.day_of_month = read_from_cmos(0x07);
   time.month = read_from_cmos(0x08) - 1;
   time.year = read_from_cmos(0x09);
-  time.century = read_from_cmos(0x32);
+  //  time.century = read_from_cmos(0x32);
+  time.century = 20;
+  time.zoneoffset = "+00:00";
 
   char status_b = read_from_cmos(0x0B);
 

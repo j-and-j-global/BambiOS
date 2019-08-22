@@ -39,4 +39,4 @@ char *itoa(int, char*, int);
 /**
    ltoa_bt returns a long in char* form, with the assumption the number is in base10
 **/
-char *ltoa_bt(unsigned long);
+char *ltoa_bt(unsigned long, char*);
