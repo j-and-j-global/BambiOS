@@ -24,6 +24,17 @@ int cmos_ready();
  **/
 int cmos_clock_updating();
 
+/**
+   cmos_status_a returns the value at register 0x0A
+ **/
+unsigned char cmos_status_a();
+
+/**
+   cmos_status_b returns the value at register 0x0B
+ **/
+unsigned char cmos_status_b();
+
+
 #ifndef CMOS_ADDRESS
 #define CMOS_ADDRESS 0x70
 #endif

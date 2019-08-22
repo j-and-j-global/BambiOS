@@ -23,6 +23,12 @@ struct t_time {
   char twentyfour;       /* Whether the RTC is in 24 hour format, or not (the hours field above IS ALWAYS in 24 hour format) */
   char dst;              /* Whether the RTC thinks we're in daylight savings */
   char bin;              /* Whether the RTC returned data in binary (or BCD) */
+
+
+  /* The following can be set from anything, but largely correspond to CMOS status registers */
+  char status_a;
+  char status_b;
+  char *debug;
 };
 
 

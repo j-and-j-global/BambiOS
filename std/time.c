@@ -8,6 +8,20 @@
 #include "printer.h"
 #include "strings.h"
 
+char *print_time_debug(struct t_time t, char *buffer) {
+  char c[4];
+  int i;
+
+  i = cpy(0, buffer, "CMOS 0x0A: ");
+  i = cpy(i, buffer, itoa(t.status_a, c, 10));
+  i = cpy(i, buffer, " || CMOS 0x0B: ");
+  i = cpy(i, buffer, itoa(t.status_b, c, 10));
+  i = cpy(i, buffer, " || Additional Debug: ");
+  i = cpy(i, buffer, t.debug);
+
+  return buffer;
+}
+
 char *iso8601_ish(struct t_time t, char *buffer) {
   char c[4];
   int i;

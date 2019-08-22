@@ -49,3 +49,11 @@ int cmos_clock_updating() {
   /* Is the clock updating? */
   return (read_from_cmos(0x0A) % 0x80);
 }
+
+unsigned char cmos_status_a() {
+  return read_from_cmos(0x0A);
+}
+
+unsigned char cmos_status_b() {
+  return read_from_cmos(0x0B);
+}

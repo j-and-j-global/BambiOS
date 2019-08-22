@@ -5,7 +5,7 @@
 #include "std/time.h"
 #include "std/strings.h"
 
-void welcome(char* vidptr) {
+unsigned int welcome(char* vidptr) {
   unsigned int i = 0;
 
   while(i < COLS * LINES * 2) {
@@ -19,18 +19,26 @@ void welcome(char* vidptr) {
   i = printline(i, vidptr, emptyLine, 0x01);
   i = printline(i, vidptr, booting, 0x4f);
 
+  return i;
+}
+
+unsigned int startup(int i, char *vidptr) {
   i = printline(i, vidptr, emptyLine, 0x01);
-
-  char tbuf[32];
-  i = printline(i, vidptr, iso8601_ish(rtc(), tbuf), 0x04);
-
-  for (int j = 0; j<100000000; j++) {
-    while(!cmos_ready());
-  }
-
-  i = printline(i, vidptr, iso8601_ish(rtc(), tbuf), 0x04);
-
   i = printline(i, vidptr, pressEnter, 0x05);
+
+  return i;
+}
+
+unsigned int initialiser(int i, char *vidptr) {
+  char tbuf[64];
+  char disp = 0x08;
+
+  i = printline(i, vidptr, emptyLine, 0x01);
+  i = printline(i, vidptr, "initialising...", disp);
+  i = printline(i, vidptr, iso8601_ish(rtc(), tbuf), disp);
+  i = printline(i, vidptr, print_time_debug(rtc(), tbuf), disp);
+
+  return i;
 }
 
 void kmain(void) {
@@ -38,5 +46,7 @@ void kmain(void) {
 
   char *vidptr = (char*)0xb8000;  //video mem begins here.
 
-  welcome(vidptr);
+  unsigned int i = welcome(vidptr);
+  i = initialiser(i, vidptr);
+  i = startup(i, vidptr);
 }

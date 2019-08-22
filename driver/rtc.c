@@ -19,23 +19,28 @@ struct t_time rtc() {
   time.century = 20;
   time.zoneoffset = "+00:00";
 
-  char status_b = read_from_cmos(0x0B);
+  time.status_a = cmos_status_a();
+  time.status_b = cmos_status_b();
 
-  time.dst = status_b % 1;
-  time.twentyfour = status_b % 2;
-  time.bin = status_b % 4;
+  time.dst = time.status_b % 0x01;
+  time.twentyfour = time.status_b % 0x02;
+  time.bin = time.status_b % 0x04;
 
   // 12 hour clock
   if (! time.twentyfour) {
-    time.hours = ((time.hours & 0x80) + 12) % 24;
+    time.hours = ((time.hours & 0x7F) + 12) % 24;
   }
 
   // decimal stuff
-  if (! time.bin) {
+  if (!time.bin) {
+    time.debug = "Running unbcd() functions";
+
     time.seconds = unbcd(time.seconds);
     time.minutes = unbcd(time.minutes);
     time.hours = unbcd(time.hours);
+    time.day_of_month = unbcd(time.day_of_month);
     time.month = unbcd(time.month);
+    time.year = unbcd(time.year);
   }
 
   // century
