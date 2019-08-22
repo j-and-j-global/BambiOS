@@ -29,7 +29,7 @@ char *iso8601_ish(struct t_time t, char *buffer) {
   i = cpy(0, buffer, itoa(t.century, c, 10));
   i = cpy(i, buffer, itoa(t.year, c, 10));
   i = cpy(i, buffer, "-");
-  i = cpy(i, buffer, itoa(t.month, c, 10));
+  i = cpy(i, buffer, itoa(t.month+1, c, 10));
   i = cpy(i, buffer, "-");
   i = cpy(i, buffer, itoa(t.day_of_month, c, 10));
   i = cpy(i, buffer, "T");
