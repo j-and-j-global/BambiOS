@@ -2,6 +2,8 @@
 #include "driver/rtc.h"
 #include "hardware/cmos.h"
 #include "std/printer.h"
+#include "std/time.h"
+#include "std/strings.h"
 
 void welcome(char* vidptr) {
   unsigned int i = 0;
@@ -19,7 +21,15 @@ void welcome(char* vidptr) {
 
   i = printline(i, vidptr, emptyLine, 0x01);
 
-  i = printline(i, vidptr, ltoa_bt(unixtime()), 0x4f);
+  char tbuf[32];
+  i = printline(i, vidptr, iso8601_ish(rtc(), tbuf), 0x04);
+
+  for (int j = 0; j<100000000; j++) {
+    while(!cmos_ready());
+  }
+
+  i = printline(i, vidptr, iso8601_ish(rtc(), tbuf), 0x04);
+
   i = printline(i, vidptr, pressEnter, 0x05);
 }
 
