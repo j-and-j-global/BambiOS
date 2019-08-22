@@ -38,3 +38,16 @@ struct t_time {
    Fields where the value is less than 0 may come back padded with a leading 0, or may not
  **/
 char *iso8601_ish(struct t_time, char*);
+
+
+/**
+   bambitime is unixtime, but with an epoch of 1988-04-30T00:00:00Z - which is my birthday
+
+   There's not really any real point to this; technically it pushes the maximum storable datetime
+   forward 18 years past the unix epoch (so 18 years past Sun Feb 07 06:28:15 2106 UTC) but I doubt
+   this'll be used in 2106.
+
+   If it is, of course, it's not like we use the time for much beyond sleeping anyway, which is fine
+   if it's wrong.
+**/
+unsigned long bambitime();

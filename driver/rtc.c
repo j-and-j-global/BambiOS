@@ -117,8 +117,8 @@ unsigned long unixtime() {
 }
 
 void sleep(int seconds) {
-  unsigned long now = unixtime();
+  unsigned long now = bambitime();
   unsigned long until = now + seconds;
 
-  while (unixtime() < until);
+  while (bambitime() < until);
 }

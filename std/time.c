@@ -7,6 +7,7 @@
 #include "time.h"
 #include "printer.h"
 #include "strings.h"
+#include "../driver/rtc.h"
 
 char *print_time_debug(struct t_time t, char *buffer) {
   char c[4];
@@ -41,4 +42,8 @@ char *iso8601_ish(struct t_time t, char *buffer) {
   i = cpy(i, buffer, t.zoneoffset);
 
   return buffer;
+}
+
+unsigned long bambitime() {
+  return unixtime() - 578361600;
 }
