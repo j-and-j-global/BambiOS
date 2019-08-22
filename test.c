@@ -86,8 +86,8 @@ int test_unixtime() {
 
   unsigned long t = unixtime();
 
-  if (t != 1566405000) {
-    printf("\tunixtime(): expected 1566405000, received %lu\n", t);
+  if (t != 1566405001) {
+    printf("\tunixtime(): expected 1566405001, received %lu\n", t);
 
     return 1;
   }

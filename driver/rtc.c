@@ -77,7 +77,7 @@ unsigned long unixtime() {
   int fullyear = time.year + (century * 100);
   int is_leapyear = leapyear(fullyear);
 
-  unsigned long u = ((fullyear - 1 - 1970) * YEAR_SECONDS) + leapseconds;
+  unsigned long u = ((fullyear  - 1970) * YEAR_SECONDS);
 
   /* Add in all of the previous full years worth of leapday seconds */
   for (int year = 1970; year < fullyear; year++) {
@@ -100,7 +100,7 @@ unsigned long unixtime() {
   u += (time.day_of_month - 1) * DAY_SECONDS;
 
   /* Add todays hours */
-  u += (time.hours - 1) * HOUR_SECONDS;
+  u += (time.hours) * HOUR_SECONDS;
 
   /* Add the minutes of this hour */
   int minutes = time.minutes;
