@@ -35,8 +35,11 @@ unsigned char read_from_cmos(char index) {
   case 0x32:
     return 20;
 
+  case 0x0A:
+    return 32;
+
   case 0x0B:
-    return 1 | 2;
+    return 2;
   }
 
   return 0;
@@ -48,4 +51,12 @@ int cmos_ready() {
 
 int cmos_clock_updating() {
   return 0;
+}
+
+unsigned char cmos_status_a() {
+  return 32;
+}
+
+unsigned char cmos_status_b() {
+  return 3;
 }
