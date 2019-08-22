@@ -1,10 +1,3 @@
-/* Welcome strings */
-char *welcomeMessage = "Welcome to BambiOS";
-char *copyright = "(c) The BambiOS team, 2019";
-char *booting = "booting...";
-char *emptyLine = " ";
-char *pressEnter = "press enter to start";
-
 #ifndef SLEEP_S
 #define SLEEP_S 5
 #endif
@@ -23,6 +16,11 @@ unsigned int initialiser(int, char*);
    startup will boot into the main kernel routine
  **/
 unsigned int startup(int, char*);
+
+/**
+   cls will clear the screen
+**/
+void cls(char*);
 
 /* kmain is the kernel entrypoint */
 void kmain(void);
