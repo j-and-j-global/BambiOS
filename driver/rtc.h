@@ -26,6 +26,10 @@ unsigned long unixtime();
  **/
 char unbcd(char);
 
+/**
+   Sleep for an amount of seconds
+ **/
+void sleep(int);
 
 /* ------------------ */
 

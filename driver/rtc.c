@@ -115,3 +115,10 @@ unsigned long unixtime() {
 
   return u;
 }
+
+void sleep(int seconds) {
+  unsigned long now = unixtime();
+  unsigned long until = now + seconds;
+
+  while (unixtime() < until);
+}

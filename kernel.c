@@ -48,5 +48,8 @@ void kmain(void) {
 
   unsigned int i = welcome(vidptr);
   i = initialiser(i, vidptr);
+
+  sleep(SLEEP_S);
+
   i = startup(i, vidptr);
 }
