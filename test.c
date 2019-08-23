@@ -84,7 +84,8 @@ int test_rtc() {
 int test_unixtime() {
   printf("test_unixtime()\n");
 
-  unsigned long t = unixtime();
+  struct t_time rtc_time = rtc();
+  unsigned long t = unixtime(rtc_time);
 
   if (t != 1566405001) {
     printf("\tunixtime(): expected 1566405001, received %lu\n", t);

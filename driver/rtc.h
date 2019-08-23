@@ -16,20 +16,11 @@ struct t_time rtc();
 int leapyear(int);
 
 /**
-   Return the time shown on the RTC as seconds since 00:00:00 01/01/1970
- **/
-unsigned long unixtime();
-
-/**
    Given a Binary-coded decimal, mask off and return a straight up decimal of
    the value being encoded
  **/
 char unbcd(char);
 
-/**
-   Sleep for an amount of seconds
- **/
-void sleep(int);
 
 /* ------------------ */
 

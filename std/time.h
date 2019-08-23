@@ -39,6 +39,10 @@ struct t_time {
  **/
 char *iso8601_ish(struct t_time, char*);
 
+/**
+   unixtime returns the number of seconds since 1970-01-01T00:00:00Z
+ **/
+unsigned long unixtime(struct t_time);
 
 /**
    bambitime is unixtime, but with an epoch of 1988-04-30T00:00:00Z - which is my birthday
@@ -50,4 +54,9 @@ char *iso8601_ish(struct t_time, char*);
    If it is, of course, it's not like we use the time for much beyond sleeping anyway, which is fine
    if it's wrong.
 **/
-unsigned long bambitime();
+unsigned long bambitime(struct t_time);
+
+/**
+   Sleep for an amount of seconds
+ **/
+void sleep(int);
