@@ -36,8 +36,12 @@ build/strings.o: build
 build/buffer.o: build
 	$(CC) $(CFLAGS) -c buffer.c -o build/buffer.o
 
-dist/kernel: dist build/kasm.o build/kc.o build/printer.o build/cmos.o build/rtc.o build/time.o build/strings.o build/buffer.o
-	ld -m elf_i386 -T link.ld -o dist/kernel build/kasm.o build/kc.o build/printer.o build/cmos.o build/rtc.o build/time.o build/strings.o build/buffer.o
+build/menu.o: build
+	$(CC) $(CFLAGS) -c app/menu.c -o build/menu.o
+
+
+dist/kernel: dist build/kasm.o build/kc.o build/printer.o build/cmos.o build/rtc.o build/time.o build/strings.o build/buffer.o build/menu.o
+	ld -m elf_i386 -T link.ld -o dist/kernel build/kasm.o build/kc.o build/printer.o build/cmos.o build/rtc.o build/time.o build/strings.o build/buffer.o build/menu.o
 
 tests: test
 	$(CC) -fno-stack-protector -da -Q -g -Wall -Wextra -pedantic -pipe std/strings.c std/time.c std/printer.c hardware/test_cmos.c driver/rtc.c test.c -o test/test

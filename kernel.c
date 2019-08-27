@@ -4,6 +4,7 @@
 #include "std/printer.h"
 #include "std/time.h"
 #include "std/strings.h"
+#include "app/menu.h"
 
 unsigned int initialiser(int i, char *vidptr) {
   char tbuf[64];
@@ -26,5 +27,15 @@ void kmain(void) {
 
   sleep(SLEEP_S);
 
-  i = startup(i, vidptr);
+  cls(vidptr);
+  menu_lines(3, vidptr);
+
+  sleep(1);
+  menu_lines(4, vidptr);
+
+  sleep(1);
+  menu_lines(5, vidptr);
+
+  sleep(1);
+  menu_lines(4, vidptr);
 }
