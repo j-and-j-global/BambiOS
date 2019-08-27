@@ -187,7 +187,7 @@ int test_iso8601_ish() {
 }
 
 int test_cpy() {
-  printf("test_cpy\n");
+  printf("test_cpy()\n");
 
   char buffer[32];
   char *a = "Hello, ";
