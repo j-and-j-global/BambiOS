@@ -119,7 +119,7 @@ int framestart(int old_start, int cursor) {
     return old_start + 1;
   }
 
-  if (cursor < (old_start - 22)) {
+  if (cursor < old_start) {
     return old_start - 1;
   }
 
