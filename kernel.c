@@ -1,10 +1,13 @@
 #include "kernel.h"
 #include "driver/rtc.h"
+#include "driver/keyboard.h"
 #include "hardware/cmos.h"
 #include "std/printer.h"
 #include "std/time.h"
 #include "std/strings.h"
 #include "app/menu.h"
+
+char *vidptr = (char*)0xb8000;  //video mem begins here.
 
 unsigned int initialiser(int i, char *vidptr) {
   char tbuf[64];
@@ -20,22 +23,16 @@ unsigned int initialiser(int i, char *vidptr) {
 void kmain(void) {
   while (!cmos_ready());
 
-  char *vidptr = (char*)0xb8000;  //video mem begins here.
-
   unsigned int i = welcome(vidptr);
   i = initialiser(i, vidptr);
 
   sleep(SLEEP_S);
 
   cls(vidptr);
-  menu_lines(3, vidptr);
+  menu_lines(0, 0, vidptr);
 
-  sleep(1);
-  menu_lines(4, vidptr);
+  idt_init();
+  kb_init();
 
-  sleep(1);
-  menu_lines(5, vidptr);
-
-  sleep(1);
-  menu_lines(4, vidptr);
+  while(1);
 }

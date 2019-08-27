@@ -22,5 +22,13 @@ unsigned int startup(int, char*);
 **/
 void cls(char*);
 
-/* kmain is the kernel entrypoint */
+/**
+   kmain is the kernel entrypoint
+**/
 void kmain(void);
+
+/**
+   byebye is a call defined in asm which will shutdown the kernel and, thus,
+   the machine
+**/
+extern void byebye(void);

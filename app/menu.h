@@ -17,8 +17,7 @@ char *menu_footer();
 /**
    menu_full returns the full menu as an array of lines
  **/
-void menu_lines(int position, char* dest);
-
+void menu_lines(int position, int topline, char* dest);
 
 /**
    menu control chars

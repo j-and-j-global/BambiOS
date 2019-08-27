@@ -6,6 +6,7 @@
 #include "std/time.h"
 #include "std/strings.h"
 #include "driver/rtc.h"
+#include "app/app_gen.h"
 
 int test_rtc() {
   printf("test_rtc()\n");
@@ -214,15 +215,32 @@ int test_cpy() {
   return 0;
 }
 
+int test_record_track_offset() {
+  printf("record_track_offset()\n");
+
+  char buffer[80];
+  char *expect = ", ONE 2 - Who Is Who, ONE 3 - Wrecking Crew, ONE 4 - L.A. Girl, ONE 5 - Self Des";
+
+  record_track_offset(0, 23, buffer);
+
+  if (strcmp(buffer, expect) != 0) {
+    printf("\trecord_track_offset(): expected '%s', received '%s'\n", expect, buffer);
+
+    return 1;
+  }
+
+  return 0;
+}
+
 int null() {
   return 0;
 }
 
 int main(void) {
-  const int tests = 8;
+  const int tests = 9;
 
-  int (*p[8]) () = {
-    test_rtc, test_unixtime, test_spacecount, test_spacecount2, test_ltoa_bt, test_itoa, test_iso8601_ish, test_cpy,
+  int (*p[9]) () = {
+    test_rtc, test_unixtime, test_spacecount, test_spacecount2, test_ltoa_bt, test_itoa, test_iso8601_ish, test_cpy, test_record_track_offset,
   };
 
   int ret;
