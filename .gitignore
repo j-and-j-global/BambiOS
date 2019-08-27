@@ -7,3 +7,4 @@ core.*
 core
 app/app_gen.c
 *.ogv
+app/app_gen.h
