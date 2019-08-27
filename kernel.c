@@ -34,5 +34,7 @@ void kmain(void) {
   idt_init();
   kb_init();
 
-  while(1);
+  while(1) {
+    __asm__ __volatile__ ("hlt");
+  }
 }
