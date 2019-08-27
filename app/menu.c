@@ -69,14 +69,14 @@ void scroll_menu(void) {
 
     break;
 
-  case 71:
-    highlighted -= 23;
+  case 72: case 17:
+    highlighted--;
     line_start = 0;
 
     break;
 
-  case 72: case 17:
-    highlighted--;
+  case 73:
+    highlighted -= 23;
     line_start = 0;
 
     break;
@@ -130,12 +130,23 @@ int framestart(int old_start, int cursor) {
     return 0;
   }
 
+  int pos = 0;
   if (cursor > (old_start + 22)) {
-    return old_start + 1;
+    pos = old_start + (cursor - old_start);
+    if (pos > (RECORDS_COUNT - 23)) {
+      pos = RECORDS_COUNT - 23;
+    }
+
+    return pos;
   }
 
   if (cursor < old_start) {
-    return old_start - 1;
+    pos = old_start - (old_start - cursor);
+    if (pos < 0) {
+      pos = 0;
+    }
+
+    return pos;
   }
 
   return old_start;
