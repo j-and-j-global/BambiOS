@@ -5,3 +5,4 @@ test/
 *.c.*
 core.*
 core
+app/app_gen.c

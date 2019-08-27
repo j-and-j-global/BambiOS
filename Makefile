@@ -12,6 +12,10 @@ dist:
 test:
 	mkdir -p test/
 
+app/app_gen.c:
+	go get github.com/j-and-j-global/records-c-generator
+	records-c-generator -i config/records.csv > app/app_gen.c
+
 build/kasm.o: build
 	nasm -f elf32 kernel.asm -o build/kasm.o
 
@@ -39,9 +43,11 @@ build/buffer.o: build
 build/menu.o: build
 	$(CC) $(CFLAGS) -c app/menu.c -o build/menu.o
 
+build/app_gen.o: build app/app_gen.c
+	$(CC) $(CFLAGS) -c app/app_gen.c -o build/app_gen.o
 
-dist/kernel: dist build/kasm.o build/kc.o build/printer.o build/cmos.o build/rtc.o build/time.o build/strings.o build/buffer.o build/menu.o
-	ld -m elf_i386 -T link.ld -o dist/kernel build/kasm.o build/kc.o build/printer.o build/cmos.o build/rtc.o build/time.o build/strings.o build/buffer.o build/menu.o
+dist/kernel: dist build/kasm.o build/kc.o build/printer.o build/cmos.o build/rtc.o build/time.o build/strings.o build/buffer.o build/menu.o build/app_gen.o
+	ld -m elf_i386 -T link.ld -o dist/kernel build/kasm.o build/kc.o build/printer.o build/cmos.o build/rtc.o build/time.o build/strings.o build/buffer.o build/menu.o build/app_gen.o
 
 tests: test
 	$(CC) -fno-stack-protector -da -Q -g -Wall -Wextra -pedantic -pipe std/strings.c std/time.c std/printer.c hardware/test_cmos.c driver/rtc.c test.c -o test/test
