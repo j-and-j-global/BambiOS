@@ -53,7 +53,6 @@ void scroll_menu(void) {
   char keycode;
 
   /* write EOI */
-  //  write_port(0x20, 0x20);
   outb_p(0x20, 0x20);
 
   status = inb_p(KEYBOARD_STATUS_PORT);
@@ -67,6 +66,12 @@ void scroll_menu(void) {
   switch (keycode) {
   case 16:
     byebye();
+
+    break;
+
+  case 71:
+    highlighted -= 23;
+    line_start = 0;
 
     break;
 
@@ -88,6 +93,12 @@ void scroll_menu(void) {
 
   case 80: case 31:
     highlighted++;
+    line_start = 0;
+
+    break;
+
+  case 81:
+    highlighted += 23;
     line_start = 0;
 
     break;
