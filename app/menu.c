@@ -103,7 +103,11 @@ void scroll_menu(void) {
     highlighted = RECORDS_COUNT;
   }
 
-  char ib[80];
+  if (line_start > (_len(tracks[highlighted]) - 80)) {
+    line_start = _len(tracks[highlighted]) - 80;
+  }
+
+  char ib[81];
   footer = record_track_offset(highlighted, line_start, ib);
 
   page_start = framestart(page_start, highlighted);
