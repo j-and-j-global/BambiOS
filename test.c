@@ -232,15 +232,75 @@ int test_record_track_offset() {
   return 0;
 }
 
+int test__len() {
+  printf("test__len()\n");
+
+  char *s = "Hello, World!";
+  int len = _len(s);
+
+  if (len != 13) {
+    printf("\t_len(): expected %d, received %d\n", 13, len);
+
+    return 1;
+  }
+
+  return 0;
+}
+
+int test__len2() {
+  printf("test__len2()\n");
+
+  char *s = tracks[0];
+  int len = _len(s);
+
+  if (len != 270) {
+    printf("\t_len(): expected %d, received %d\n", 270, len);
+
+    return 1;
+  }
+
+  return 0;
+}
+
+int test_record_track_offset2() {
+  printf("test_record_track_offset2()\n");
+
+  // This should return from 190, since there are 270 chars and we want to always
+  // show 80 if there are that many (at least) available.
+
+  char buf[81];
+  record_track_offset(0, 250, buf);
+
+  int l = strlen(buf);
+  if (l != 80) {
+    printf("\tstrlen(): expected %d, received %d\n", 80, l);
+
+    return 1;
+  }
+
+  char *expectStr = "ack, TWO 4 - Rip It Up, TWO 5 - Democracy, TWO 6 - No Friends, TWO 7 - Creatures";
+  if (strcmp(expectStr, buf) != 0) {
+    printf("\trecord_track_offset(): expected '%s', received '%s'\n", expectStr, buf);
+
+    for (int i = 0 ; i < 80; i++) {
+      printf("%d: %c -> %X\n", i+1, buf[i], buf[i]);
+    }
+
+    return 1;
+  }
+
+  return 0;
+}
+
 int null() {
   return 0;
 }
 
 int main(void) {
-  const int tests = 9;
+  const int tests = 12;
 
-  int (*p[9]) () = {
-    test_rtc, test_unixtime, test_spacecount, test_spacecount2, test_ltoa_bt, test_itoa, test_iso8601_ish, test_cpy, test_record_track_offset,
+  int (*p[12]) () = {
+    test_rtc, test_unixtime, test_spacecount, test_spacecount2, test_ltoa_bt, test_itoa, test_iso8601_ish, test_cpy, test_record_track_offset, test_record_track_offset2, test__len, test__len2,
   };
 
   int ret;
