@@ -257,5 +257,9 @@ int main(void) {
     }
   }
 
+  if (errs == 0) {
+    printf("\n\nSuccess!\n");
+  }
+
   return errs;
 }
