@@ -32,3 +32,13 @@ void kmain(void);
    the machine
 **/
 extern void byebye(void);
+
+/**
+   shutdown will start the shutdown process and stop anything that needs it
+**/
+void shutdown(void);
+
+/**
+   shutdown_message will print the shutdown message to screen
+ **/
+unsigned int shutdown_message(char*);

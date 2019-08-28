@@ -20,6 +20,13 @@ unsigned int initialiser(int i, char *vidptr) {
   return i;
 }
 
+void shutdown(void) {
+  shutdown_message(vidptr);
+  sleep(SLEEP_S);
+
+  byebye();
+}
+
 void kmain(void) {
   while (!cmos_ready());
 

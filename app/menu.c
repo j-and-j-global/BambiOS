@@ -65,7 +65,7 @@ void scroll_menu(void) {
 
   switch (keycode) {
   case 16:
-    byebye();
+    shutdown();
 
     break;
 

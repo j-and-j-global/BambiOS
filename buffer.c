@@ -37,3 +37,15 @@ void cls(char *vidptr) {
     pos = printline(pos, vidptr, emptyLine, 0x01);
   }
 }
+
+unsigned int shutdown_message(char *vidptr) {
+  cls(vidptr);
+
+  int i = 0;
+  i = printline(i, vidptr, goodbyeMessage, 0x05);
+  i = printline(i, vidptr, copyright, 0x03);
+  i = printline(i, vidptr, emptyLine, 0x01);
+  i = printline(i, vidptr, shuttingDown, 0x4f);
+
+  return i;
+}
