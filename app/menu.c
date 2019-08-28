@@ -110,8 +110,8 @@ void scroll_menu(void) {
 
   if (highlighted < 0) {
     highlighted = 0;
-  } else if (highlighted > RECORDS_COUNT) {
-    highlighted = RECORDS_COUNT;
+  } else if (highlighted >= RECORDS_COUNT) {
+    highlighted = RECORDS_COUNT - 1;
   }
 
   if (line_start > (_len(tracks[highlighted]) - 80)) {
