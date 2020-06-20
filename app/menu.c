@@ -1,5 +1,5 @@
 /**
-   menu.c, James Condron 2019
+   menu.c, James Condron 2019, 2020
  **/
 
 #include "menu.h"
@@ -17,7 +17,7 @@ int highlighted = 0;
 char *footer = "Controls: arrow keys to move the selection. 'q' will quit";
 
 char *menu_header() {
-  return "BambiOS (c) 2019 - Records Subsystem";
+  return "BambiOS (c) 2020 - Records Subsystem";
 }
 
 char *menu_footer() {
