@@ -1,7 +1,7 @@
 /* Welcome/ Goodbye strings */
 char *welcomeMessage = "Welcome to BambiOS";
 char *goodbyeMessage = "Goodbye from BambiOS";
-char *copyright = "(c) The BambiOS team, 2019, 2020";
+char *copyright = "(c) The BambiOS team, 2019-2021";
 char *booting = "booting...";
 char *shuttingDown = "shutting down...";
 char *emptyLine = " ";
